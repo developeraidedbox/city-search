@@ -19,7 +19,6 @@ public class LocationSearchController {
 
     @GetMapping("/search")
     public LocationSearchResponse searchLocations(LocationSearchRequest searchRequest) {
-        // Exceptions are handled by com.tavisca.citysearch.resources.handlers.BasicExceptionHandler
         return locationSearchService.search(searchRequest);
     }
 }

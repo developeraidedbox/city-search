@@ -4,5 +4,5 @@ import com.tavisca.citysearch.models.LocationInfo;
 
 @FunctionalInterface
 public interface ResponseMapper<T> {
-    LocationInfo mapFrom(T response);
+    LocationInfo mapFrom(T response, String source);
 }
