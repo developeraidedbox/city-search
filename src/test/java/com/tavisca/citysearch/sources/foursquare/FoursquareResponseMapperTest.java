@@ -22,7 +22,6 @@ public class FoursquareResponseMapperTest {
     public void shouldHaveFourSquareAsSource() {
         FourSquareResponse foursquareResponse = getFoursquareResponse();
         LocationInfo locationInfo = foursquareResponseMapper.mapFrom(foursquareResponse, source);
-
         assertEquals(source, locationInfo.getSource());
     }
 
@@ -31,7 +30,7 @@ public class FoursquareResponseMapperTest {
     public void shouldMapDetailFromGeoCode() {
         FourSquareResponse foursquareResponse = getFoursquareResponse();
 
-        LocationInfo locationInfo = foursquareResponseMapper.mapFrom(foursquareResponse, "Foursquare");
+        LocationInfo locationInfo = foursquareResponseMapper.mapFrom(foursquareResponse, source);
 
         assertEquals("IN", locationInfo.getCountryCode());
         assertEquals("Pune", locationInfo.getName());
