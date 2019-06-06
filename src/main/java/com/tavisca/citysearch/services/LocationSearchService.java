@@ -32,8 +32,4 @@ public class LocationSearchService {
 
         return new LocationSearchResponse(request.getQuery(), request.getCategory(), locationInfos);
     }
-
-    private boolean isEmpty(String text) {
-        return text == null || text.isEmpty();
-    }
 }
