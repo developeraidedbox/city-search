@@ -5,6 +5,7 @@ import com.tavisca.citysearch.models.LocationSearchRequest;
 import com.tavisca.citysearch.sources.LocationInfoSource;
 import com.tavisca.citysearch.sources.foursquare.models.FourSquareResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,10 +25,11 @@ public class FoursquareLocationInfoSource implements LocationInfoSource {
 
     @Override
     public LocationInfo getLocationInfo(LocationSearchRequest request) {
-        return responseMapper
-                .mapFrom(restTemplate
-                        .getForEntity(fourSquareConfiguration
-                                .buildUrl(request.getQuery()), FourSquareResponse.class).getBody(), getName());
+
+        String foursquareUrl = fourSquareConfiguration.buildUrl(request.getQuery());
+        ResponseEntity<FourSquareResponse> responseEntity = restTemplate.getForEntity(foursquareUrl, FourSquareResponse.class);
+
+        return responseMapper.mapFrom(responseEntity.getBody(), getName());
     }
 
 
