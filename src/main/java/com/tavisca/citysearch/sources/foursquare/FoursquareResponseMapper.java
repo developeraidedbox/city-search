@@ -46,10 +46,11 @@ public class FoursquareResponseMapper implements ResponseMapper<FourSquareRespon
         return venues.stream().map(this::toNearby).collect(Collectors.toList());
     }
 
+
     private Nearby toNearby(Venue venue) {
         return new Nearby(venue.getName(),
-                        getFirstOrEmpty(venue.getLocation().getFormattedAddress()),
-                                toKind(venue.getCategories()));
+                getFirstOrEmpty(venue.getLocation().getFormattedAddress()),
+                toKind(venue.getCategories()));
     }
 
     private String toKind(List<Category> categories) {

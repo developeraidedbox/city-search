@@ -28,10 +28,10 @@ public class FoursquareLocationInfoSource implements LocationInfoSource {
 
         String foursquareUrl = fourSquareConfiguration.buildUrl(request.getQuery());
         ResponseEntity<FourSquareResponse> responseEntity = restTemplate.getForEntity(foursquareUrl, FourSquareResponse.class);
+        LocationInfo locationInfo = responseMapper.mapFrom(responseEntity.getBody(), getName());
 
-        return responseMapper.mapFrom(responseEntity.getBody(), getName());
+        return locationInfo;
     }
-
 
     @Override
     public String getName() {

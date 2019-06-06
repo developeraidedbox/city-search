@@ -10,7 +10,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.HttpStatus.OK;
@@ -21,24 +21,19 @@ public class FoursquareLocationInfoSourceTest {
     private final String query = "Pune";
     private final String category = "Historic Site";
     private final String foursquareApiUrl = "someurl";
-
+    @Mock
+    LocationInfo locationInfo;
     @Mock
     private RestTemplate restTemplate;
-
     @Mock
     private FoursquareResponseMapper mapper;
-
     @Mock
     private FoursquareConfiguration foursquareConfiguration;
-
     @Mock
     private FourSquareResponse fourSquareResponse;
 
-    @Mock
-    LocationInfo locationInfo;
-
     @Test
-    public void shouldCallFoursquareApiToGetLocationInfo() {
+    public void shouldCallFoursquareApiToGetLocationInfo() throws Exception {
         LocationSearchRequest searchRequest = new LocationSearchRequest(query, category);
 
         FoursquareLocationInfoSource foursquareLocationInfoSource = new FoursquareLocationInfoSource(restTemplate, mapper, foursquareConfiguration);

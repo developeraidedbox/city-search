@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class LocationInfo {
+public class LocationInfo implements Cloneable {
     private String name;
     private String source;
     private String countryCode;

@@ -23,6 +23,23 @@ public class LocationSearchServiceTest {
 
 
     @Test
+    public void shouldSearchInAllLocationInfoSourcesIfCategoryIsNull() {
+        LocationSearchRequest searchRequest = new LocationSearchRequest(query, null);
+
+        when(fourSquareSource.getLocationInfo(searchRequest)).thenReturn(fourSquareLocationInfo);
+        when(googleMapsSource.getLocationInfo(searchRequest)).thenReturn(googleMapsLocationInfo);
+
+        LocationSearchService searchService = new LocationSearchService(asList(fourSquareSource, googleMapsSource));
+
+        LocationSearchResponse searchResponse = searchService.search(searchRequest);
+
+        verify(fourSquareSource).getLocationInfo(searchRequest);
+        verify(googleMapsSource).getLocationInfo(searchRequest);
+
+        assertEquals(asList(fourSquareLocationInfo, googleMapsLocationInfo), searchResponse.getData());
+    }
+
+    @Test
     public void shouldSearchInAllLocationInfoSources() {
         LocationSearchRequest searchRequest = new LocationSearchRequest(query, category);
 

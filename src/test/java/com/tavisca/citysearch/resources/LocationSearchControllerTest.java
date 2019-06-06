@@ -23,17 +23,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(LocationSearchController.class)
 public class LocationSearchControllerTest {
 
-    @Autowired
-    private MockMvc mvc;
-
-    @MockBean
-    private RestTemplate restTemplate;
-
-    @MockBean
-    private LocationSearchService locationSearchService;
-
     private final String query = "Pune";
     private final String category = "Historic Site";
+    @Autowired
+    private MockMvc mvc;
+    @MockBean
+    private RestTemplate restTemplate;
+    @MockBean
+    private LocationSearchService locationSearchService;
 
     @Test
     public void shouldReturnLocationSearchResponse() throws Exception {
