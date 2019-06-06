@@ -18,18 +18,14 @@ import static org.springframework.http.HttpStatus.OK;
 @RunWith(MockitoJUnitRunner.class)
 public class FoursquareLocationInfoSourceTest {
 
-    private final String query = "Pune";
-    private final String category = "Historic Site";
-    private final String foursquareApiUrl = "someurl";
-
-    LocationInfo locationInfo;
-
     @Mock
     private RestTemplate restTemplate;
     @Mock
     private FoursquareResponseMapper mapper;
+
     @Mock
     private FoursquareConfiguration foursquareConfiguration;
+
     @Mock
     private FourSquareResponse fourSquareResponse;
 
@@ -38,12 +34,17 @@ public class FoursquareLocationInfoSourceTest {
 
     @Test
     public void shouldCallFoursquareApiToGetLocationInfo() throws Exception {
+
+        String query = "Pune";
+        String category = "Historic Site";
+        String foursquareApiUrl = "someurl";
+
         LocationSearchRequest searchRequest = new LocationSearchRequest(query, category);
 
         FoursquareLocationInfoSource foursquareLocationInfoSource = new FoursquareLocationInfoSource(restTemplate, mapper, foursquareConfiguration, foursquareResponseFilter);
 
         when(foursquareConfiguration.buildUrl(query)).thenReturn(foursquareApiUrl);
-        when(mapper.mapFrom(fourSquareResponse, foursquareLocationInfoSource.getName())).thenReturn(locationInfo);
+        when(mapper.mapFrom(fourSquareResponse, foursquareLocationInfoSource.getName())).thenReturn(null);
         when(restTemplate.getForEntity(foursquareApiUrl, FourSquareResponse.class)).thenReturn(new ResponseEntity<>(fourSquareResponse, OK));
 
         LocationInfo foursquareLocationInfo = foursquareLocationInfoSource.getLocationInfo(searchRequest);
@@ -52,6 +53,6 @@ public class FoursquareLocationInfoSourceTest {
         verify(restTemplate).getForEntity(foursquareApiUrl, FourSquareResponse.class);
         verify(mapper).mapFrom(fourSquareResponse, foursquareLocationInfoSource.getName());
 
-        assertEquals(locationInfo, foursquareLocationInfo);
+        assertEquals(null, foursquareLocationInfo);
     }
 }

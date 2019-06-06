@@ -13,8 +13,6 @@ import static org.mockito.Mockito.*;
 public class LocationSearchServiceTest {
 
     private final String query = "Pune";
-    private final String category = "Historic Site";
-
     private LocationInfoSource fourSquareSource = mock(LocationInfoSource.class);
     private LocationInfoSource googleMapsSource = mock(LocationInfoSource.class);
 
@@ -41,6 +39,9 @@ public class LocationSearchServiceTest {
 
     @Test
     public void shouldSearchInAllLocationInfoSources() {
+
+        String category = "Historic Site";
+
         LocationSearchRequest searchRequest = new LocationSearchRequest(query, category);
 
         when(fourSquareSource.getLocationInfo(searchRequest)).thenReturn(fourSquareLocationInfo);

@@ -3,14 +3,9 @@ package com.tavisca.citysearch.sources.foursquare;
 import com.tavisca.citysearch.models.LocationInfo;
 import com.tavisca.citysearch.models.LocationSearchRequest;
 import com.tavisca.citysearch.models.Nearby;
-import com.tavisca.citysearch.sources.ResponseFilter;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -18,8 +13,6 @@ import static org.junit.Assert.assertEquals;
 public class FoursquareResponseFilterTest {
 
     private String query = "Pune";
-    private String category = "Historic Site";
-
     private static final List<Nearby> nearby = new ArrayList<>();
 
     static {
@@ -31,6 +24,7 @@ public class FoursquareResponseFilterTest {
     public void shouldFilterResponseWithCategory()
     {
 
+        String category = "Historic Site";
         LocationSearchRequest request = new LocationSearchRequest(query, category);
 
         LocationInfo locationInfo = new LocationInfo();

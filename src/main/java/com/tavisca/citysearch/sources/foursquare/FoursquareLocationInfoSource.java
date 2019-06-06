@@ -5,8 +5,13 @@ import com.tavisca.citysearch.models.LocationSearchRequest;
 import com.tavisca.citysearch.sources.LocationInfoSource;
 import com.tavisca.citysearch.sources.foursquare.models.FourSquareResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 @Component
 public class FoursquareLocationInfoSource implements LocationInfoSource {
@@ -29,8 +34,9 @@ public class FoursquareLocationInfoSource implements LocationInfoSource {
 
         String foursquareUrl = fourSquareConfiguration.buildUrl(request.getQuery());
 
+        ResponseEntity<FourSquareResponse> foursquareResponse = requireNonNull(restTemplate.getForEntity(foursquareUrl, FourSquareResponse.class));
         LocationInfo locationInfo = responseMapper
-                .mapFrom(restTemplate.getForEntity(foursquareUrl, FourSquareResponse.class).getBody(), getName());
+                .mapFrom(requireNonNull(foursquareResponse.getBody()), getName());
 
         return foursquareResponseFilter.filter(request, locationInfo);
     }

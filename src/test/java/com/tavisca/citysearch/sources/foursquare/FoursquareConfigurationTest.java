@@ -6,15 +6,18 @@ import static org.junit.Assert.assertEquals;
 
 public class FoursquareConfigurationTest {
 
-    private String url = "https://baseUrl";
-    private String client_id = "some_client_id";
-    private String client_secret = "some_client_secret";
-    private String version = "some_version";
-    private String intent = "some_intent";
-    private String near = "Pune";
+
 
     @Test
     public void shouldBuildUrlFromRequiredFields() {
+
+        String url = "https://baseUrl";
+        String client_id = "some_client_id";
+        String client_secret = "some_client_secret";
+        String version = "some_version";
+        String intent = "some_intent";
+        String near = "Pune";
+
         FoursquareConfiguration configuration = new FoursquareConfiguration(url, client_id, client_secret, version, intent);
 
         assertEquals(

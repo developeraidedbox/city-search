@@ -38,8 +38,7 @@ public class FoursquareResponseMapper implements ResponseMapper<FourSquareRespon
 
     private Map<String, Object> getData(Map<String, Object> metaData, String key) {
         return metaData != null && metaData.containsKey(key)
-                ? (Map<String, Object>) metaData.get(key)
-                : Collections.emptyMap();
+                ? (Map<String, Object>) metaData.get(key) : Collections.emptyMap();
     }
 
     private List<Nearby> buildNearby(List<Venue> venues) {
@@ -67,13 +66,13 @@ public class FoursquareResponseMapper implements ResponseMapper<FourSquareRespon
 
     private static class MetaDataField {
 
-        public static final String GEO_CODE = "geocode";
-        public static final String CENTER = "center";
-        public static final String NAME = "name";
-        public static final String CC = "cc";
-        public static final String DISPLAY_NAME = "displayName";
-        public static final String LAT = "lat";
-        public static final String LNG = "lng";
+        private static final String GEO_CODE = "geocode";
+        private static final String CENTER = "center";
+        private static final String NAME = "name";
+        private static final String CC = "cc";
+        private static final String DISPLAY_NAME = "displayName";
+        private static final String LAT = "lat";
+        private static final String LNG = "lng";
         private static final String FEATURE = "feature";
         private static final String GEO_METRY = "geometry";
 
