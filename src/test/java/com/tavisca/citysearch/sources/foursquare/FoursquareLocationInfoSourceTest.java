@@ -21,8 +21,9 @@ public class FoursquareLocationInfoSourceTest {
     private final String query = "Pune";
     private final String category = "Historic Site";
     private final String foursquareApiUrl = "someurl";
-    @Mock
+
     LocationInfo locationInfo;
+
     @Mock
     private RestTemplate restTemplate;
     @Mock
@@ -32,11 +33,14 @@ public class FoursquareLocationInfoSourceTest {
     @Mock
     private FourSquareResponse fourSquareResponse;
 
+    @Mock
+    private FoursquareResponseFilter foursquareResponseFilter;
+
     @Test
     public void shouldCallFoursquareApiToGetLocationInfo() throws Exception {
         LocationSearchRequest searchRequest = new LocationSearchRequest(query, category);
 
-        FoursquareLocationInfoSource foursquareLocationInfoSource = new FoursquareLocationInfoSource(restTemplate, mapper, foursquareConfiguration);
+        FoursquareLocationInfoSource foursquareLocationInfoSource = new FoursquareLocationInfoSource(restTemplate, mapper, foursquareConfiguration, foursquareResponseFilter);
 
         when(foursquareConfiguration.buildUrl(query)).thenReturn(foursquareApiUrl);
         when(mapper.mapFrom(fourSquareResponse, foursquareLocationInfoSource.getName())).thenReturn(locationInfo);

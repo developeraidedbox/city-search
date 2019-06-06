@@ -9,5 +9,6 @@ import java.util.List;
 @AllArgsConstructor
 public class LocationSearchResponse {
     private final String query;
+    private final String category;
     private final List<LocationInfo> data;
 }

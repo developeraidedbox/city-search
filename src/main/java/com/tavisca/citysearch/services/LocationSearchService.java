@@ -1,7 +1,6 @@
 package com.tavisca.citysearch.services;
 
 
-import com.tavisca.citysearch.models.FilteredSearchResponse;
 import com.tavisca.citysearch.models.LocationInfo;
 import com.tavisca.citysearch.models.LocationSearchRequest;
 import com.tavisca.citysearch.models.LocationSearchResponse;
@@ -31,10 +30,7 @@ public class LocationSearchService {
                 .parallelStream()
                 .map(source -> source.getLocationInfo(request)).collect(Collectors.toList());
 
-        if (!isEmpty(request.getCategory()))
-            return new FilteredSearchResponse(request.getQuery(), request.getCategory(), locationInfos);
-
-        return new LocationSearchResponse(request.getQuery(), locationInfos);
+        return new LocationSearchResponse(request.getQuery(), request.getCategory(), locationInfos);
     }
 
     private boolean isEmpty(String text) {
