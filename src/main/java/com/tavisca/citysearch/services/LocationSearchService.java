@@ -5,8 +5,6 @@ import com.tavisca.citysearch.models.LocationInfo;
 import com.tavisca.citysearch.models.LocationSearchRequest;
 import com.tavisca.citysearch.models.LocationSearchResponse;
 import com.tavisca.citysearch.sources.LocationInfoSource;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
