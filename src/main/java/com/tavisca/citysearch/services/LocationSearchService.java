@@ -16,8 +16,6 @@ import java.util.stream.Collectors;
 @Service
 public class LocationSearchService {
 
-    private static final Logger logger = LogManager.getLogger(LocationSearchService.class);
-
     private final List<LocationInfoSource> locationInfoSources;
 
     @Autowired
